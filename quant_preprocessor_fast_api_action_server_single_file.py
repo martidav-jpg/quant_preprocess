@@ -24,7 +24,8 @@ app = FastAPI(title="CSV Quant Preprocessor — Action Server",
               version="1.0.0",
               description="Outer-join vendor CSVs; run 18 file-pure strategies; export Excel workbook + meta JSON.")
 
-app.servers = [{"url": os.environ.get("BASE_URL", "http://localhost:8000")}]
+#app.servers = [{"url": os.environ.get("BASE_URL", "http://localhost:8000")}]
+app.servers = [{"url": "https://quant-preprocess.onrender.com"}]
 
 app.add_middleware(
     CORSMiddleware,
