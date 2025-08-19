@@ -268,6 +268,14 @@ def build_alerts_df(merged: pd.DataFrame, cols: Dict[str,str]):
 async def root():
     return {"ok": True, "service": "CSV Quant Preprocessor — Action Server"}
 
+from fastapi import Security
+from fastapi.security.api_key import APIKeyHeader
+
+api_key_header = APIKeyHeader(name="X-API-Key", auto_error=True)
+
+@app.post("/process", dependencies=[Depends(api_key_header)])
+async def process_csv(...):
+
 @app.post("/process")
 async def process(req: ProcessRequest):
     # optional shared secret
